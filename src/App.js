@@ -5,7 +5,9 @@ import Table from "./components/table";
 
 function App(props) {
   const [datos, setDatos] = useState({ name: "", age: 0, success: false });
-  const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState([
+    { name: "alfa", age: "3", id: 1 },
+  ]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -22,7 +24,6 @@ function App(props) {
     console.log("Agregó: " + JSON.stringify(data));
     if (data) {
       setDatos({ ...datos, success: true });
-      const newData = (data) => [...data, data];
       console.log("DATA TABLE: " + JSON.stringify([...tableData, data]));
       setTableData([...tableData, data]);
     }
@@ -61,8 +62,8 @@ function App(props) {
           </label>
           <input type="submit" value="Submit" id="submit" />
         </form>
-        <label id="response">
-          {datos.success === true ? "se agrego " + datos.name : ""}
+        <label id="success">
+          {datos.success === true ? "se agrego " + datos.name : "se agregó"}
         </label>
         <Table tableData={tableData} />
       </header>
